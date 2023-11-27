@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+    <style>
+     
+    </style>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="add_post">
+        <form action="/add-post" method="POST" enctype="multipart/form-data">
+            <h3>Create a New Post</h3>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" name="author" class="form-control" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" name="title" class="form-control" placeholder="Post Title" required>
+            </div>
+            <div class="form-group">
+                <label for="body">Body:</label>
+                <textarea name="body" class="form-control" placeholder="Write your post" required></textarea> 
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select name="category" class="form-control" required>
+                    <option value="" disabled selected>Select a category</option>
+                    <option>Travel</option>
+                    <option>Technology</option>
+                    <option>Lifestyle</option>
+                    <option>Sports</option>
+                    <option>Science</option>
+                    <option>Food</option>
+                </select>
+            </div>
+            <div class="btn">
+                <button type="submit" id="add_post_btn">Post</button>
+            </div>
+        </form>
+    </div>
+    <%- include('../partials/footer.ejs')%>
+</body>
+</html>

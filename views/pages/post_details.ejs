@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="center">
+        <div class="blog_details">
+            <div class="section">
+                <h1><%= post.title%></h1>
+                <label>Posted by <span><%= post.author %></span> on <%= post.date %></label>
+                <p><%- post.body%></p>
+            </div>
+            <div class="comments">
+                <h2>Comments</h2>
+                <% if (post.comments && post.comments.length > 0) { %>
+                    <ul id="comment_list">
+                        <% post.comments.forEach(function(comment) { %>
+                            <li>
+                                <div class="comment-header">
+                                    <img class="circleImage" src="/comment_image.png" alt="Anonymous">
+                                    <div class="author-date">
+                                        <strong><%= comment.author %></strong>
+                                        <span><%= comment.date.toLocaleString()%></span>
+                                    </div>
+                                </div>
+                                <p><%= comment.text %></p>
+                            </li>
+                        <% }); %>
+                    </ul>
+                <% } else { %>
+                    <ul id="comment_list">
+                        <li id="no_comments">No comments yet.</li>
+                    </ul>
+                <% } %>
+            </div>
+            <div class="add_comment">
+                <form id="comment_form">
+                    <h4>Add a new comment</h4>
+                    <input id="author__" type="text" name="author" placeholder="Your Name" required>
+                    <textarea id="comment__" name="comment" placeholder="Write a comment" required></textarea> 
+                    <div class="btn">
+                        <button type="submit" id="comment_btn">Post</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/footer.ejs')%>
+
+    <script>
+        document.getElementById("comment_form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const form = document.getElementById("comment_form");
+            const formData = new FormData(form);
+            document.getElementById('author__').value='';
+            document.getElementById('comment__').value='';
+
+            fetch('/comments/<%= post.id %>', {
+                method: 'PUT',
+                body: formData,
+            }).then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            }).then((data) => {
+                var comment_list = document.getElementById('comment_list');
+                var no_comments = document.getElementById('no_comments');
+                const date = new Date(data.comment.date).toLocaleString();
+
+                if(no_comments) {
+                    no_comments.remove();
+                }
+
+                comment_list.innerHTML = `<li><div class="comment-header">
+                    <img class="circleImage" src="/comment_image.png" alt="Anonymous">
+                                    <div class="author-date">
+                                        <strong>${data.comment.author}</strong>
+                                        <span>${date}</span>
+                                    </div>
+                                </div>
+                                <p>${data.comment.text}</p>
+                            </li>` + comment_list.innerHTML;
+            }).catch((err) => {
+                console.log("Error! " + err);
+            });
+        });
+
+    </script>
+</body>
+</html>

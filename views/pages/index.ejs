@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="setup_blogs">
+        <h2>All Posts</h2>
+        <div class="categoryD">
+            <p class="categoryP">Category: </p>
+            <select id="categories">
+                <option selected>All Categories</option>
+                <option>Travel</option>
+                <option>Technology</option>
+                <option>Lifestyle</option>
+                <option>Sports</option>
+                <option>Science</option>
+                <option>Food</option>
+            </select>
+        </div>
+    </div>
+    <div class="blogs_field" id="blogs_fieldID">
+            <% posts.forEach((post) => { %>
+                <div class="field">
+                    <div class="divide">
+                        <h3><%= post.title %></h3>
+                        <label class="category"><%= post.category %></label>
+                    </div>
+                    <label class="date"><%= post.date %></label>
+                    <p class="blogsP"><%- post.body %></p>
+                    <label class="author">by <%= post.author%></label>
+                    <button class="read_more" data="<%= post._id%>" onclick="read_more(this)">Read More</button>
+                </div>
+            <% }); %>
+    </div>
+    <%- include('../partials/footer.ejs')%>
+
+    <script>
+        function read_more(button) {
+            const endpoint = "/post/" + button.getAttribute("data");
+            window.location.href = endpoint;
+        }
+        const select = document.getElementById('categories');
+
+        select.addEventListener('change', function(event) {
+            const posts_div = document.getElementById('blogs_fieldID');
+            const posts = <%- JSON.stringify(posts) %>;
+            const value = select.value;
+            posts_div.innerHTML = '';
+
+            posts.forEach((post) => {
+                const date = new Date(post.date).toString();
+                
+                if(value == 'All Categories' || value == post.category) {
+                    posts_div.innerHTML += `<div class="field"><div class="divide"><h3>${post.title}
+                        </h3><label class="category">${post.category}</label></div><label class="date">
+                        ${date}</label><p class="blogsP">${post.body}</p><label class="author">by ${post.author}
+                        </label><button class="read_more" data=${post._id} onclick="read_more(this)">Read More</button></div>`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
