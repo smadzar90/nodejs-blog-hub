@@ -1,6 +1,6 @@
 # Blog-hub (NodeJS)
 
-## ??  Description
+## 📖  Description
 
 Blog-Hub is a sophisticated web application that serves as a learning playground, showcasing the implementation of key technologies, Node.js, MongoDB, and the Model-View-Controller (MVC) architectural pattern. Created with educational purposes in mind, Blog-Hub provides a practical example of these technologies working harmoniously to build a dynamic and feature-rich blogging platform.
 
@@ -41,7 +41,7 @@ Blog-Hub is a sophisticated web application that serves as a learning playground
 
 ## ??  Contact
 
-- Stipan Mad�ar
+- Stipan Mad¾ar
 - ?? Email: smadzar90@student.se.edu
 - ?? GitHub: [https://github.com/smadzar90](https://github.com/smadzar90)
 - ?? LinkedIn: [https://www.linkedin.com/in/stipan-madzar-b6b857225/](https://www.linkedin.com/in/stipan-madzar-b6b857225/)
