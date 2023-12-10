@@ -38,10 +38,10 @@ Blog-Hub is a sophisticated web application that serves as a learning playground
 5. Start the application: `node app` or `nodemon app`  
 6. Access the app on: `http://localhost:4000`
 
+## 👤 Author
+- Stipan Madzar
 
 ## 📧  Contact
-
-- Stipan Madzar
 - ✉️ Email: [smadzar90@student.se.edu](mailto:smadzar90@student.se.edu)
 - 🐙 GitHub: [smadzar90](https://github.com/smadzar90)
 - 💼 LinkedIn: [Stipan Madzar](https://www.linkedin.com/in/stipan-madzar-b6b857225/)
