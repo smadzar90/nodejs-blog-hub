@@ -13,7 +13,7 @@ app.use(blog_router);
 
 const PORT = 4000;
 
-const uri = 'mongodb+srv://smadzar90:sosu-2023@cluster1.oqd2m1l.mongodb.net/blog-database?retryWrites=true&w=majority';
+const uri = 'mongodb+srv://smadzar90:<my-password>@cluster1.oqd2m1l.mongodb.net/blog-database?retryWrites=true&w=majority';
 mongoose.connect(uri)
     .then((success) => {
         console.log("Successfully connected to MongoDB!");
